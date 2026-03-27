@@ -8,4 +8,10 @@
 4- 1. Primeiro foi feito uma função para guardar memória com malloc para depois ser chamada nas 3 matrizes (original, identidade e por fim o total). Na original foi atribuido os valores com um contador no for {1,2,3} {4,5,6} {7,8,9}.
    2. Para ter o valor da matriz de identidade foi utilizado o for para passar por i e j, quando o valor da linha e coluna forem iguais será 1, caso contrário 0, assim forma {1,0,0} {0,1,0} {0,0,1}.
    3. Por fim para obter o resultado foi feito 3 for alinhados para que passe pela linha da original e a coluna da identidade, o K é a ponte O i e o j escolhem a posição do resultado, e o k funciona como um intermediário percorre ambos multiplicando e somando em uma nova matriz. no final usei o free para liberar a memória.
-   
+
+5- 1. Utilizamos o malloc para reservar memória para o vetor, a matriz e o total, em ambos o usuário digita os valores com o scanf por meio do for (vetor apenas um, matriz dois) com o tamanho de 3. 
+   2. Para o resultado utilizamos dois for, um para o vetor (linha) e outro para a matriz (coluna) inicia o total como 0 para então fazer a multiplicação e adição, no fim é exibido com um printf, por fim, usa o free para liberar a memória.
+
+6- 1. Utilizamos o Struct para formar o conjunto Aluno por ser tipos diferentes de variável, após isso declaramos do mesmo modo uma lista, aprovados e reprovados. Dentro de um for, o usuário insere as informações dos 10 alunos.
+   2. Após isso é declarado também dois contadores para que não fique amontoado na hora da separação com o if (lista[i].mFinal>=5), o contador aumenta de acordo com a lista destinada.
+   3. Por fim é exibido dentro de um for que repete até onde o contador acabou, assim exibe os Aprovados e os Reprovados.
