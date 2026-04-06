@@ -15,7 +15,7 @@ typedef struct {
 
 void enqueue(Fila *f, int id, int tempoAtendimento)
 {
-    Cliente *temp, *novo = malloc(sizeof(Cliente));
+    Cliente *novo = malloc(sizeof(Cliente));
     
     if (novo)
     {

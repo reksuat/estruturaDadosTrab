@@ -1,0 +1,3 @@
+## ATIVIDADE 3
+
+1- 1. Criamos cliente nó com id, tempo de atendimento e *proximo, e a Fila guardando o *inicio e *fim. 2. Enqueue (push): aloca memória para o novo. Se a fila estiver vazia, inicio e fim apontam para o novo, se não o novo aponta para o seu próximo e o fim atualiza. 3. Dequeue (pop): cria o *remover apontando pro inicio, que vai passando para o próximo até que a fila esvazia e se inicio for NULL o fim também passa a ser, finaliza com um free. 4. Inicio e fim como NULL, recebe os dados do usuário (id e tempo de atendimento) preenche a fila com o enqueue, while para imprimir a fila e o tempoEspera inicia como 0 e aumenta com base no tempo de atendimento do anterior e soma.
