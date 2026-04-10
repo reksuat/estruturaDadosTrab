@@ -11,7 +11,7 @@ typedef struct pilha{
 } Pilha;
 
 void push(Pilha *p, char valor){
-    No *novo = malloc(sizeof(No)); //guardando o espaço para novo nó
+    No *novo = malloc(sizeof(No));
     if(novo == NULL){
         printf("Erro ao alocar memória\n");
         return;
