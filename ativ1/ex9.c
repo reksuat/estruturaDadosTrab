@@ -23,9 +23,9 @@ int main() {
     int NIguais = ordem(&n1, &n2, &n3);
 
     printf("\nValores ordenados:\n");
-    printf("Primeira variável: %d\n", v1);
-    printf("Segunda variável:  %d\n", v2);
-    printf("Terceira variável: %d\n", v3);
+    printf("Primeira variável: %d\n", n1);
+    printf("Segunda variável:  %d\n", n2);
+    printf("Terceira variável: %d\n", n3);
 
     if (NIguais) {
         printf("\nResultado da função: 1\n");
