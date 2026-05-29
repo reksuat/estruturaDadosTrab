@@ -84,13 +84,24 @@ void dividirLista(No *lista, No **lista1, No **lista2) {
     }
     No *slow = lista;
     No *fast = lista;
-    while (fast->prox != NULL && fast->prox != NULL) {
+    while (fast->prox != NULL && fast->prox->prox != NULL) {
         slow = slow->prox;
         fast = fast->prox->prox;
     }
     *lista1 = lista; 
     *lista2 = slow->prox; 
     slow->prox = NULL; 
+}
+void liberarLista(No **lista) {
+    No *atual = *lista;
+    No *proximo;
+
+    while (atual != NULL) {
+        proximo = atual->prox; 
+        free(atual);           
+        atual = proximo;       
+    }
+    *lista = NULL;
 }
 int main() {
     int opcao=-1, num, pos, busca, valorBusca;
@@ -146,7 +157,13 @@ int main() {
             exibirLista(lista);
             break;
         case 0:
-            printf("Saindo...\n");
+            printf("Saindo e liberando memória...\n");
+            if (lista1 != NULL || lista2 != NULL) {
+                liberarLista(&lista1);
+                liberarLista(&lista2);
+            } else {
+            liberarLista(&lista);
+            }
             break;
         default:
             printf("Opção inválida, Tente novamente.\n");
