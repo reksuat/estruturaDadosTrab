@@ -1,0 +1,10 @@
+1. O código Lista de reprodução.c foi desenvolvido para simular o funcionamento de uma playlist de músicas utilizando o conceito de listas em C. 
+Ele foi estruturado criando-se um registro (struct) para representar cada música (armazenando dados como título e artista) e outro para os nós da lista, que contêm as informações da faixa e os ponteiros responsáveis por conectar uma música à outra na memória. 
+A lógica foi feita implementando funções clássicas de manipulação de estruturas de dados, permitindo a inserção de novas faixas no início ou no fim da playlist, a remoção de músicas específicas e a exibição completa da lista na tela. 
+Tudo isso controlando a navegação por meio da manipulação direta de ponteiros e garantindo a alocação dinâmica de memória para cada novo elemento inserido.
+
+2. Já o código INT.c consiste em uma implementação mais direta e conceitual de uma estrutura de dados do tipo lista, mas voltada especificamente para o armazenamento de números inteiros. 
+Ele foi construído definindo um nó padrão que guarda um valor do tipo int e um ponteiro de encadeamento para o próximo elemento. 
+A lógica do programa foi desenvolvida focando nas operações essenciais de uma lista linear, incluindo as rotinas de inicialização da estrutura, funções para inserir novos números ordenadamente ou nas extremidades, busca de valores específicos dentro da lista e, por fim, um ciclo de varredura para liberar a memória alocada dinamicamente. 
+Desse modo, o arquivo serve como a base lógica e matemática para entender o comportamento dos ponteiros antes da aplicação em cenários mais complexos.
+
