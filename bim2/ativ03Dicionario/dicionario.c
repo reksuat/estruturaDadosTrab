@@ -1,4 +1,4 @@
-'#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -46,10 +46,38 @@ void liberar(No *tabela[]) {
     }
 }
 
-/* remove essa parte quando add sua parte Nathaly*/
 void exibirEstatisticas(No *tabela[]) {
-    (void)tabela;
-    printf("*INFO* Estatísticas\n");
+    int totalElementos = 0;
+    int totalColisoes = 0;
+    int maiorLista = 0;
+
+    for (int i = 0; i < TAM; i++) {
+        int tamanhoListaAtual = 0;
+        No *atual = tabela[i];
+
+        while (atual != NULL) {
+            totalElementos++;
+            tamanhoListaAtual++;
+            atual = atual->prox;
+        }
+
+        if (tamanhoListaAtual > 1) {
+            totalColisoes += (tamanhoListaAtual - 1);
+        }
+
+        if (tamanhoListaAtual > maiorLista) {
+            maiorLista = tamanhoListaAtual;
+        }
+    }
+
+    float fatorCarga = (float)totalElementos / TAM;
+
+    printf("\n --- ESTATÍSTICAS DA TABELA HASH ---\n");
+    printf(" Quantidade de elementos: %d\n", totalElementos);
+    printf(" Quantidade de colisões: %d\n", totalColisoes);
+    printf(" Fator de carga: %.2f\n", fatorCarga);
+    printf(" Maior lista encadeada: %d\n", maiorLista);
+    printf(" -----------------------------------\n");
 }
 
 void inserir(No *tabela[], char palavra[], char definicao[]) {
