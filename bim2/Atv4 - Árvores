@@ -1,0 +1,142 @@
+Atividade Avaliativa 4 – Estruturas Avançadas de Árvores
+
+Parte 1 – Tipos de Árvores
+
+1. Árvore AVL (Adelson-Velsky e Landis)
+
+*Conceito*: A Árvore AVL é uma árvore binária de busca (BST) auto-balanceada. Ela foi a primeira estrutura de seu tipo a ser proposta na ciência da computação.
+O balanceamento estrito garante que as operações fundamentais permaneçam eficientes mesmo nos piores cenários de inserção de dados ordenados.
+
+*Características*: A principal propriedade de uma árvore AVL é o Fator de Balanceamento (FB), calculado para cada nó como a diferença entre a altura da subárvore esquerda (hE) e a altura da subárvore direita (hD): 
+                                                                                    FB = hE − hD
+Para que a árvore permaneça balanceada, o fator de balanceamento de qualquer nó deve obrigatoriamente pertencer ao conjunto {-1, 0, 1}.
+Se após uma inserção ou remoção o FB de algum nó se tornar -2 ou +2, a subárvore está desbalanceada e uma operação de rotação (simples ou dupla) deve ser executada imediatamente para restaurar a propriedade estrutural.
+*Vantagens da Árvore AVL*
+• Busca extremamente rápida e previsível: por ser rigidamente balanceada, a altura é estritamente limitada a O(log n), minimizando o número de comparações.
+• Inserções e remoções complexas: rebalanceamentos frequentes exigem atualização de alturas e execução de rotações que oneram o tempo de processamento.
+*Desvantagens da Árvore AVL*
+• Ideal para aplicações de leitura intensiva, onde o conjunto de dados é estático ou sofre poucas alterações estruturais.	
+• Overhead de memória: cada nó individual precisa armazenar explicitamente um campo adicional contendo a sua altura atual ou o seu fator de balanceamento.
+
+*Exemplo Ilustrado*:
+Árvore Balanceada (AVL):
+       [30] (FB=0)
+       /    \
+ [20](FB=0)  [40](FB=0)
+
+Se inserirmos o elemento [10], o nó [30] passará a ter FB = +2 (Desbalanceado), disparando uma rotação simples à direita para reordenar a estrutura e restabelecer o equilíbrio.
+
+
+2. Árvore Rubro-Negra (Red-Black Tree)
+
+*Conceito*: A Árvore Rubro-Negra é uma árvore binária de busca auto-balanceada que utiliza um esquema de coloração abstrata em seus nós (atribuindo a cor vermelha ou preta) para garantir o equilíbrio aproximado da estrutura.
+Ao contrário da AVL, ela tolera pequenas variações de altura em troca de inserções e remoções mais velozes.
+*Regras de Coloração* (Propriedades Fundamentais):
+•	1. Todo nó é obrigatoriamente Vermelho ou Preto.
+•	2. A raiz da árvore é sempre Preta.
+•	3. Todas as folhas nulas (NIL) são consideradas Pretas.
+•	4. Se um nó é Vermelho, ambos os seus filhos devem ser Pretos. (Não são permitidos nós vermelhos consecutivos na mesma subárvore).
+•	5. Caminho Negro Uniforme: Qualquer caminho de um nó até suas folhas descentes deve conter rigorosamente o mesmo número de nós pretos (altura negra).
+*Vantagens da Rubro-Negra*
+• Modificações estruturais baratas: o balanceamento exige menos rotações na inserção/remoção em comparação com o rigor exigido pela AVL.
+• Busca ligeiramente mais lenta: a altura máxima pode chegar a até 2 * log(n + 1), permitindo caminhos mais longos que na árvore AVL.
+*Desvantagens da Rubro-Negra*
+• Desempenho geral otimizado em cenários mistos, com alta frequência de escritas e leituras concorrentes.	
+• Lógica de desenvolvimento complexa: a implementação possui múltiplos casos especiais para recolorização e rotação que dificultam a codificação e testes.
+
+*Exemplo Ilustrado*:
+Representação Abstrata de Coloração:
+         [15 (Preto)]
+        /            \
+  [10 (Vermelho)]   [20 (Vermelho)]
+   /        \ 
+[NIL(P)]  [NIL(P)]
+
+Note que a propriedade do caminho negro é mantida: qualquer percurso da raiz até uma folha NIL intercepta exatamente 2 nós pretos (o próprio nó 15 e a folha NIL correspondente).
+
+3. Árvore N-ária (Árvore Genérica)
+
+*Conceito*: Uma Árvore N-ária é uma estrutura de dados hierárquica na qual cada nó interno pode possuir até N filhos, quebrando a barreira das árvores binárias convencionais (onde N é fixado estritamente em 2).
+*Diferenças em relação às Árvores Binárias*:
+•	Grau de Ramificação: Nas árvores binárias o grau máximo é 2. Nas N-árias o grau é uma variável livre N, parametrizada de acordo com as restrições e o volume de dados da aplicação.
+•	Gerenciamento de Ponteiros: Estruturas binárias possuem ponteiros fixos (esquerda/direita). Nós N-ários requerem arranjos dinâmicos, listas encadeadas de ponteiros ou matrizes de referência para gerenciar múltiplos filhos por nó.
+•	Altura Otimizada: O aumento do fator de ramificação reduz drasticamente a altura global da árvore, diminuindo a quantidade de saltos em disco necessários para localizar dados secundários.
+*Vantagens da Árvore N-ária*
+• Mapeamento Hierárquico Natural: representa de forma limpa e direta diretórios, organogramas corporativos e categorizações complexas.
+• Desperdício de Memória Potencial: se os nós forem alocados com arrays estáticos de tamanho N e não utilizarem todos os filhos, haverá ponteiros nulos ociosos.
+*Desvantagens da Árvore N-ária*
+• Altura extremamente reduzida: excelente compactação de caminhos de busca para leitura de blocos de memória massivos.
+• Algoritmos de Varredura Complexos: percursos em largura (BFS) ou profundidade (DFS) exigem iterações em coleções dinâmicas de nós em vez de simples condicionais binárias.
+
+*Exemplo Ilustrado* (Árvore Ternária N=3):
+             [Raiz: Arquivos]
+             /      |       \
+     [Documentos] [Fotos] [Sistemas]
+      /     \        |
+  [TCC]  [Relatório] [Viagem]
+
+Aplicações Práticas: São fundamentais em sistemas de arquivos operacionais (como NTFS, ext4), bancos de dados relacionais massivos na forma de variantes B/B+ e árvores de prefixo (Trie) empregadas em corretores ortográficos automatizados e engines de busca na web.
+
+Parte 2 – Operações em Árvores
+1. Rotação Simples à Direita (RSD)
+
+*Objetivo*: Reduzir a altura da subárvore esquerda deslocando nós estratégicos para a direita, reequilibrando a árvore sem ferir a ordenação lógica dos elementos.
+*Situação de Utilização*: Aplicada estritamente quando um nó pai apresenta fator de balanceamento crítico (+2) causado por uma sobrecarga na subárvore esquerda do seu filho esquerdo (caso conhecido tecnicamente como desbalanceamento Esquerda-Esquerda).
+*Exemplo Prático* (Antes e Depois):
+ANTES DA ROTAÇÃO (Desbalanceada):
+      [30] (FB=+2)
+      /
+    [20] (FB=+1)
+    /
+  [10] (FB=0)	
+DEPOIS DA ROTAÇÃO (Balanceada):
+      [20] (FB=0)
+     /    \
+ [10](0)  [30](0)
+
+2. Rotação Simples à Esquerda (RSE)
+
+*Objetivo*: Reduzir a altura acumulada na subárvore direita, rotacionando a estrutura para a esquerda para redistribuir a carga de dados.
+*Situação de Utilização*: Disparada quando o nó pai atinge um fator de balanceamento impeditivo (-2) decorrente de um crescimento excessivo na subárvore direita do seu filho direito (cenário Direita-Direita).
+*Exemplo Prático* (Antes e Depois):
+ANTES DA ROTAÇÃO (Desbalanceada):
+  [10] (FB=-2)
+    \
+    [20] (FB=-1)
+      \
+      [30] (FB=0)	
+DEPOIS DA ROTAÇÃO (Balanceada):
+      [20] (FB=0)
+     /    \
+ [10](0)  [30](0)
+
+3. Rotações Duplas
+Quando os desbalanceamentos ocorrem em direções cruzadas (em formato de 'cotovelo' ou 'ziguezague'), uma única rotação simples é incapaz de resolver o problema estrutural.
+Nesses casos, aplicamos as Rotações Duplas, que combinam uma rotação no filho seguida de uma rotação no pai.
+• Rotação Esquerda-Direita (LR - Left-Right): Utilizada quando o nó desbalanceado (FB=+2) possui um filho esquerdo carregado em sua subárvore direita (caso Esquerda-Direita).
+Executa-se primeiro uma Rotação Simples à Esquerda no filho esquerdo e, na sequência, uma Rotação Simples à Direita no nó pai.
+• Rotação Direita-Esquerda (RL - Right-Left): Utilizada quando o nó desbalanceado (FB=-2) possui um filho direito carregado em sua subárvore esquerda (caso Direita-Esquerda).
+Aplica-se uma Rotação Simples à Direita sobre o filho direito e, sucessivamente, uma Rotação Simples à Esquerda no nó pai.
+Exemplo Ilustrado de um Caso Cruzado (LR):
+  [30] (Pai: FB=+2)          [30] (Pai)               [25] (Nova Raiz)
+  /                          /                         /    \
+[20] (Filho: FB=-1)  ==>   [25] (Filho)      ==>     [20]   [30]
+    \\                      /
+    [25]                 [20]
+ (Ziguezague Inicial)    (1º Passo: RSE no Filho)     (2º Passo: RSD no Pai)
+
+4. Inversão ou Espelhamento (Mirroring)
+*Conceito*: A inversão é uma operação algorítmica que altera a topologia da árvore trocando sistematicamente o ponteiro esquerdo pelo ponteiro direito de absolutamente todos os nós internos da estrutura, gerando uma imagem refletida perfeitamente simétrica.
+*Aplicação*: Frequentemente empregada em rotinas de processamento de imagens gráficas, inversão de hierarquias de herança de classes, otimizações específicas de layouts geométricos e testes de simetria lógica em problemas de inteligência artificial.
+*Exemplo Prático de Espelhamento*:
+ESTRUTURA ORIGINAL:
+      [A]
+     /   \
+   [B]   [C]
+   /
+ [D]	ESTRUTURA ESPELHADA:
+      [A]
+     /   \
+   [C]   [B]
+           \
+           [D]
