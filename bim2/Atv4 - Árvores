@@ -140,3 +140,28 @@ ESTRUTURA ORIGINAL:
    [C]   [B]
            \
            [D]
+
+Parte 3 – Aplicação Prática
+
+Aplicação Escolhida: Renderização de Interfaces de Usuário (Virtual DOM) em Bibliotecas Web
+Estrutura Mais Adequada: Árvore N-ária (Árvore Genérica)
+Justificativa:
+A estrutura de uma interface de usuário moderna é composta por elementos HTML aninhados. Ao utilizar bibliotecas de componentização no front-end, como o React, a interface é estruturada na memória através de um conceito chamado Virtual DOM. O Virtual DOM é, na sua essência, uma **Árvore N-ária**, onde a raiz é o contêiner principal da página, e cada nó pode ter múltiplos nós filhos representando divisões, parágrafos, imagens e botões.
+
+Por exemplo, ao desenvolver um sistema web interativo para o cardápio de uma cafeteria, a página será subdividida em diversos componentes estruturais. Como cada elemento visual pode conter de zero a dezenas de outros elementos internos, as árvores binárias (como AVL ou Rubro-Negra) não são aplicáveis, pois restringem os filhos a no máximo dois. A Árvore N-ária permite a flexibilidade exata que o DOM precisa. Quando ocorrem interações na tela, os algoritmos percorrem essa árvore N-ária comparando o estado anterior com o atual, aplicando as atualizações na tela de forma otimizada e sem recarregar a página inteira.
+
+Parte 4 – Comparação entre Estruturas
+
+| Estrutura | Nº Máximo de Filhos | Balanceamento | Complexidade de Busca | Complexidade de Inserção | Vantagem Principal | Desvantagem Principal | Exemplo de Aplicação |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| BST | 2 | Não possui balanceamento automático. Pode ficar desbalanceada conforme a ordem de inserção. | O(log n) no melhor caso e O(n) no pior caso | O(log n) no melhor caso e O(n) no pior caso | Estrutura simples de entender e implementar. | Pode perder desempenho se ficar desbalanceada (virando uma lista encadeada). | Árvores de busca básicas e introdução à estrutura de dados. |
+| AVL | 2 | Sim. Mantém o fator de balanceamento rígido através de rotações simples e duplas. | O(log n) | O(log n) | Busca previsível e extremamente rápida. | Inserção e remoção são mais custosas devido à alta frequência de rotações. | Índices e estruturas que exigem leitura intensiva e poucas alterações. |
+| Rubro-Negra | 2 | Sim. Usa regras de coloração e rotações para manter o balanceamento aproximado. | O(log n) | O(log n) | Balanceamento eficiente com modificações estruturais mais "baratas" (menos rotações que a AVL). | Lógica de implementação e recolorização complexa. | Bibliotecas internas, mapas e conjuntos em linguagens de programação. |
+| N-ária | N (vários filhos) | Pode ou não possuir mecanismos de balanceamento, dependendo da variação exata (ex: Árvore B). | O(log n) em estruturas balanceadas, mas depende do cenário de aplicação. | O(log n) ou proporcional à estrutura adotada. | Representa perfeitamente hierarquias complexas e compacta caminhos de busca no disco. | Algoritmos de varredura são mais complexos por lidarem com coleções dinâmicas de filhos. | Sistemas de arquivos, Virtual DOM, organogramas e taxonomias. |
+
+Explicação:
+A tabela acima ilustra a evolução das estruturas de árvores para solucionar o problema da degradação de performance. 
+A BST (Árvore Binária de Busca) é a base fundamental, mas sua fragilidade está na dependência da ordem em que os dados são inseridos. Se inserirmos dados já ordenados, ela se degenera para uma complexidade de tempo O(n).
+Para resolver isso, a AVL introduziu um rigoroso fator de balanceamento matemático. Ela garante a complexidade ótima de O(log n) para buscas, mas sacrifica o tempo de inserção/remoção com muitas rotações.
+A Rubro-Negra surge como um "meio-termo" de alta performance: ao relaxar levemente o rigor da altura usando cores, ela exige menos rotações nas inserções e remoções, sendo a escolha ideal para sistemas de propósito geral que realizam leituras e escritas na mesma proporção.
+Por fim, a Árvore N-ária rompe o limite de apenas dois filhos. Embora sua complexidade possa variar dependendo de como é implementada, o seu brilho está em aplicações estruturais profundas, gerenciando perfeitamente o agrupamento de múltiplos dados sob um único nó raiz.
